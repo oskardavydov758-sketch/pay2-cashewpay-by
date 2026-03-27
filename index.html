@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Cashew Pay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            color: rgba(0,0,0,0.65);
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .ant-layout {
+            display: flex;
+            flex-direction: column;
+            flex: auto;
+            background: #fff;
+        }
+        .header {
+            background: #fff;
+            padding: 0;
+            line-height: 58px;
+            z-index: 10;
+            min-width: 305px;
+            box-shadow: 0 2px 8px #f0f1f2;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        .logoOffset {
+            flex: 1 1;
+        }
+        .logoCont {
+            flex: 2 1;
+            display: flex;
+            justify-content: center;
+            margin: 5px;
+        }
+        .logoCont img {
+            max-width: 180px;
+            height: auto;
+        }
+        .backCont {
+            flex: 1 1;
+        }
+        .content-area {
+            flex: 1 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            padding: 20px;
+        }
+        .container-card {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .form-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 9px 1px rgba(0,0,0,0.1);
+            border: 1px solid #efefef;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+        .row-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        @media (min-width: 992px) {
+            .col-lg-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+        .qrBlock {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+            border-right: none;
+        }
+        .qrBlock img {
+            height: 220px;
+            width: 220px;
+            object-fit: contain;
+            margin: 10px 0;
+        }
+        .infoCont {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            padding: 15px 20px 15px 30px;
+        }
+        .infoBlock {
+            text-align: left;
+            width: 100%;
+        }
+        .info-row {
+            margin-bottom: 10px;
+        }
+        .info-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.75);
+            margin-bottom: 2px;
+        }
+        .info-value {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(0,0,0,0.85);
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+        .recipient-block {
+            margin-bottom: 12px;
+        }
+        .recipient-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(0,0,0,0.85);
+            line-height: 1.3;
+            margin-top: 2px;
+        }
+        .price-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c77bd;
+        }
+        .footer {
+            background: #2c77bd;
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            text-align: center;
+            color: #f0f8ff;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        @media (max-width: 991px) {
+            .infoCont {
+                padding: 15px 20px;
+                justify-content: center;
+            }
+            .qrBlock {
+                border-right: none;
+            }
+        }
+        @media (max-width: 767px) {
+            .form-card {
+                margin: 15px 0;
+            }
+            .qrBlock img {
+                height: 180px;
+                width: 180px;
+            }
+            .info-label, .info-value, .recipient-text {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="ant-layout">
+        <div class="header">
+            <div class="header-content">
+                <div class="logoOffset"></div>
+                <div class="logoCont">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjY0IiBoZWlnaHQ9IjUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNLjczNSAyNi4yMTJjMCAxNC4xOTQgMTEuNTA3IDI1LjcwMiAyNS43MDMgMjUuNzAyIDE0LjE5NCAwIDI1LjcwMi0xMS41MDggMjUuNzAyLTI1LjcwM0M1Mi4xNCAxMi4wMTggNDAuNjMyLjUxIDI2LjQzNy41MVMuNzM1IDEyLjAxNy43MzUgMjYuMjEyem0xNi4xMDguMTQ3Yy0xLjMyMy0xLjM5Ny0zLjg3Ny0xLjE1Ny0zLjc2Ny43NjQuNDI3IDcuNDQzIDYuODA4IDEzLjEzMSAxNC4yNTIgMTIuNzA0IDcuNDQzLS40MjcgMTMuMTMxLTYuODA3IDEyLjcwNC0xNC4yNTEtLjA3LTEuMjMzLTEuNzA1LTEuMzg0LTIuNDQ3LS4zOTdhMTMuNTYzIDEzLjU2MyAwIDAxLTEwLjA5IDUuNDA3IDEzLjU2MyAxMy41NjMgMCAwMS0xMC42NTItNC4yMjd6IiBmaWxsPSIjRUM1OTMxIi8+PHBhdGggZD0iTTk2Ljg5NSAyMS41ODVjLS4yNS0xLjcxMy0uOTQ2LTIuOTk4LTIuMDg4LTMuODU0LTEuMTA2LS44OTItMi41MTYtMS4zMzgtNC4yMjktMS4zMzgtLjc4NSAwLTEuNjI0LjE0Mi0yLjUxNi40MjgtLjg5Mi4yNS0xLjcxMy43NS0yLjQ2MiAxLjQ5OS0uNzUuNzEzLTEuMzc0IDEuNzMtMS44NzQgMy4wNTEtLjUgMS4yODUtLjc1IDIuOTgtLjc1IDUuMDg1IDAgMS4xNDMuMTI2IDIuMjg1LjM3NSAzLjQyNy4yODYgMS4xNDIuNzE0IDIuMTU5IDEuMjg1IDMuMDVhNy41MDkgNy41MDkgMCAwMDIuMzAyIDIuMTk2Yy45MjguNTM1IDIuMDUyLjgwMyAzLjM3Mi44MDMgMS43ODUgMCAzLjI0OC0uNTU0IDQuMzktMS42NiAxLjE3OC0xLjEwNiAxLjkxLTIuNjU5IDIuMTk1LTQuNjU3aDYuMTAyYy0uNTcxIDMuNjA0LTEuOTQ1IDYuMzctNC4xMjIgOC4yOTctMi4xNCAxLjg5Mi00Ljk5NiAyLjgzNy04LjU2NSAyLjgzNy0yLjE3NyAwLTQuMTA0LS4zNTctNS43ODEtMS4wNy0xLjY0Mi0uNzUtMy4wMzMtMS43NDktNC4xNzUtMi45OTgtMS4xNDItMS4yODUtMi4wMTctMi44MDEtMi42MjMtNC41NS0uNTcyLTEuNzQ5LS44NTctMy42NC0uODU3LTUuNjc1IDAtMi4wNy4yODUtNC4wMTQuODU3LTUuODM0LjU3LTEuODIgMS40MjctMy4zOSAyLjU2OS00LjcxMSAxLjE0Mi0xLjM1NiAyLjU1Mi0yLjQxIDQuMjI5LTMuMTU5IDEuNzEzLS43ODUgMy43MTItMS4xNzcgNS45OTYtMS4xNzcgMS42MDUgMCAzLjEyMi4yMTQgNC41NS42NDIgMS40NjMuMzkzIDIuNzQ4IDEgMy44NTQgMS44MmE5LjcwMSA5LjcwMSAwIDAxMi43ODQgMy4xMDVjLjcxMyAxLjI1IDEuMTQyIDIuNzMgMS4yODQgNC40NDNoLTYuMTAyek0xMzEuMTM3IDMzLjg0NGMwIC43NS4wODkgMS4yODUuMjY3IDEuNjA2LjIxNS4zMi42MDcuNDgxIDEuMTc4LjQ4MWguNjQyYy4yNSAwIC41MzYtLjAzNS44NTctLjEwNnY0LjIyOGMtLjIxNC4wNzItLjUuMTQzLS44NTcuMjE1LS4zMjEuMTA3LS42Ni4xOTYtMS4wMTcuMjY3YTExLjA2IDExLjA2IDAgMDEtMS45OC4yMTRjLTEuMjQ5IDAtMi4yODQtLjI1LTMuMTA1LS43NS0uODIxLS40OTktMS4zNTYtMS4zNzMtMS42MDYtMi42MjItMS4yMTMgMS4xNzctMi43MTIgMi4wMzQtNC40OTcgMi41Ny0xLjc0OC41MzUtMy40NDQuODAyLTUuMDg1LjgwMi0xLjI0OSAwLTIuNDQ1LS4xNzgtMy41ODctLjUzNWE5LjYzNSA5LjYzNSAwIDAxLTMuMDUxLTEuNDQ1IDcuOTY1IDcuOTY1IDAgMDEtMi4wODgtMi41MTZjLS40OTktMS4wMzUtLjc0OS0yLjIzLS43NDktMy41ODcgMC0xLjcxMy4zMDMtMy4xMDUuOTEtNC4xNzUuNjQyLTEuMDcxIDEuNDYzLTEuOTEgMi40NjItMi41MTZhMTAuOTggMTAuOTggMCAwMTMuNDI2LTEuMjg1IDM2LjE3IDM2LjE3IDAgMDEzLjg1NS0uNjQyIDI2LjYzMiAyNi42MzIgMCAwMTMuMTU4LS40MjljLjk5OS0uMTA3IDEuODczLS4yNjcgMi42MjMtLjQ4Mi43ODUtLjIxNCAxLjM5Mi0uNTM1IDEuODItLjk2My40NjQtLjQ2NC42OTYtMS4xNDIuNjk2LTIuMDM0IDAtLjc4NS0uMTk2LTEuNDI4LS41ODktMS45MjdhMy4zMDcgMy4zMDcgMCAwMC0xLjM5Mi0xLjEyNSA0LjkyMyA0LjkyMyAwIDAwLTEuODItLjUzNWMtLjY3OC0uMTA3LTEuMzItLjE2LTEuOTI3LS4xNi0xLjcxMyAwLTMuMTIzLjM1Ny00LjIyOSAxLjA3LTEuMTA2LjcxNC0xLjczMSAxLjgyLTEuODc0IDMuMzJoLTYuMTAyYy4xMDctMS43ODUuNTM1LTMuMjY2IDEuMjg1LTQuNDQ0YTguOTY5IDguOTY5IDAgMDEyLjgzNy0yLjgzN2MxLjE3OC0uNzE0IDIuNDk4LTEuMjEzIDMuOTYxLTEuNDk5YTIzLjQyNSAyMy40MjUgMCAwMTQuNDk3LS40MjhjMS4zNTYgMCAyLjY5NC4xNDMgNC4wMTUuNDI4IDEuMzIuMjg2IDIuNDk4Ljc1IDMuNTMzIDEuMzkyYTcuNTQgNy41NCAwIDAxMi41NjkgMi41MTZjLjY0MyAxIC45NjQgMi4yMy45NjQgMy42OTR2MTQuMjM5em0tNi4xMDMtNy43MDljLS45MjguNjA3LTIuMDcuOTgyLTMuNDI2IDEuMTI0YTM5LjY2MyAzOS42NjMgMCAwMC00LjA2OC41MzZjLS42NDMuMTA3LTEuMjY3LjI2Ny0xLjg3NC40ODFhNC44NTggNC44NTggMCAwMC0xLjYwNi44MDNjLS40NjQuMzIyLS44MzguNzY4LTEuMTI0IDEuMzM5LS4yNS41MzUtLjM3NSAxLjE5NS0uMzc1IDEuOTggMCAuNjc4LjE5NyAxLjI1LjU4OSAxLjcxMy4zOTMuNDY0Ljg1Ny44NCAxLjM5MiAxLjEyNS41NzEuMjUgMS4xNzguNDI4IDEuODIuNTM1LjY3OC4xMDcgMS4yODUuMTYgMS44Mi4xNi42NzggMCAxLjQxLS4wODkgMi4xOTUtLjI2N2E2Ljk3NyA2Ljk3NyAwIDAwMi4xOTUtLjkxIDUuODg2IDUuODg2IDAgMDAxLjc2Ni0xLjYwNmMuNDY0LS42NzguNjk2LTEuNDk5LjY5Ni0yLjQ2M3YtNC41NXpNMTQyLjMwNyAzMS4xMTRjLjE3OCAxLjc4NC44NTYgMy4wMzMgMi4wMzQgMy43NDdzMi41ODcgMS4wNyA0LjIyOSAxLjA3Yy41NzEgMCAxLjIxMy0uMDM1IDEuOTI3LS4xMDZhOS40MTggOS40MTggMCAwMDIuMDg4LS41MzZjLjY0Mi0uMjUgMS4xNi0uNjA3IDEuNTUyLTEuMDcuNDI4LS41LjYyNS0xLjE0Mi41ODktMS45MjgtLjAzNi0uNzg1LS4zMjEtMS40MjctLjg1Ni0xLjkyNy0uNTM2LS41LTEuMjMyLS44OTItMi4wODgtMS4xNzctLjgyMS0uMzIyLTEuNzY3LS41OS0yLjgzNy0uODAzYTEzNS41ODEgMTM1LjU4MSAwIDAxLTMuMjY2LS42OTYgMzIuMzkgMzIuMzkgMCAwMS0zLjMxOS0uOTEgMTEuMTk0IDExLjE5NCAwIDAxLTIuODM3LTEuNDQ2IDYuODYgNi44NiAwIDAxLTEuOTgtMi4zMDJjLS41LS45NjMtLjc1LTIuMTQtLjc1LTMuNTMzIDAtMS40OTguMzU3LTIuNzQ3IDEuMDcxLTMuNzQ3YTguMzY0IDguMzY0IDAgMDEyLjc4My0yLjQ2MiAxMi4wMjQgMTIuMDI0IDAgMDEzLjc0OC0xLjMzOCAyMi40NDYgMjIuNDQ2IDAgMDEzLjk2MS0uMzc1YzEuNDI3IDAgMi43ODMuMTYgNC4wNjguNDgyIDEuMzIxLjI4NSAyLjQ5OC43NjcgMy41MzMgMS40NDVhOC4xNzQgOC4xNzQgMCAwMTIuNjIzIDIuNjc2Yy43MTQgMS4wNzEgMS4xNiAyLjM3NCAxLjMzOSAzLjkwOGgtNi4zNzFjLS4yODUtMS40NjMtLjk2My0yLjQ0NC0yLjAzNC0yLjk0NC0xLjAzNS0uNS0yLjIzLS43NS0zLjU4Ni0uNzVhMTMuNiAxMy42IDAgMDAtMS41NTMuMTA4IDYuNjcyIDYuNjcyIDAgMDAtMS42NTkuNDI4Yy0uNS4xNzgtLjkyOC40NjQtMS4yODUuODU2LS4zNTcuMzU3LS41MzUuODQtLjUzNSAxLjQ0NiAwIC43NS4yNDkgMS4zNTYuNzQ5IDEuODIuNTM1LjQ2NCAxLjIxMy44NTYgMi4wMzQgMS4xNzcuODU3LjI4NiAxLjgyLjUzNiAyLjg5MS43NSAxLjA3MS4yMTQgMi4xNzcuNDQ2IDMuMzE5LjY5NmEzMy45NiAzMy45NiAwIDAxMy4yNjUuOTFjMS4wNzEuMzU3IDIuMDE3LjgzOSAyLjgzNyAxLjQ0NWE2LjY0MyA2LjY0MyAwIDAxMi4wMzUgMi4zMDJjLjUzNS45MjguODAzIDIuMDcuODAzIDMuNDI2IDAgMS42NDItLjM3NSAzLjAzMy0xLjEyNSA0LjE3NWE4Ljc5NCA4Ljc5NCAwIDAxLTIuOTQ0IDIuNzg0Yy0xLjE3Ny43MTQtMi40OTggMS4yMzEtMy45NjEgMS41NTJhMjAuMTggMjAuMTggMCAwMS00LjMzNi40ODJjLTEuNzQ5IDAtMy4zNzMtLjE5Ni00Ljg3MS0uNTg5LTEuNDY0LS4zOTItMi43NDgtLjk4LTMuODU1LTEuNzY2YTkuNDMgOS40MyAwIDAxLTIuNTY5LTIuOTk4Yy0uNjA3LTEuMjEzLS45MjgtMi42NC0uOTY0LTQuMjgyaDYuMTAzek0xNjUuNDYyIDEuNzc5aDYuMTAzdjE0LjE4NWguMTA3Yy43NDktMS4yNDkgMS44NTUtMi4yODQgMy4zMTktMy4xMDQgMS40OTgtLjg1NyAzLjE1OC0xLjI4NSA0Ljk3OC0xLjI4NSAzLjAzMyAwIDUuNDI0Ljc4NSA3LjE3MyAyLjM1NSAxLjc0OSAxLjU3IDIuNjIzIDMuOTI2IDIuNjIzIDcuMDY2VjQwaC02LjEwMlYyMi42MDJjLS4wNzItMi4xNzctLjUzNi0zLjc0Ny0xLjM5Mi00LjcxLS44NTctMS0yLjE5NS0xLjUtNC4wMTUtMS41LTEuMDM1IDAtMS45NjMuMTk3LTIuNzg0LjU5YTUuNjI2IDUuNjI2IDAgMDAtMi4wODcgMS41NTJjLS41NzEuNjQyLTEuMDE3IDEuNDEtMS4zMzkgMi4zMDJhOC4zMTYgOC4zMTYgMCAwMC0uNDgxIDIuODM3VjQwaC02LjEwM1YxLjc3OXpNMjE1LjIwNCAyMy43MjZhOS4yODQgOS4yODQgMCAwMC0uNjQyLTIuNzgzIDYuNTE4IDYuNTE4IDAgMDAtMS4zOTItMi4zMDIgNi4wNTEgNi4wNTEgMCAwMC0yLjE0MS0xLjYwNmMtLjgyMS0uNDI4LTEuNzQ5LS42NDItMi43ODQtLjY0Mi0xLjA3IDAtMi4wNTIuMTk2LTIuOTQ0LjU4OGE2LjUxIDYuNTEgMCAwMC0yLjI0OCAxLjU1MyA4IDggMCAwMC0xLjQ5OSAyLjMwMiA4LjUxOCA4LjUxOCAwIDAwLS41ODkgMi44OWgxNC4yMzl6bS0xNC4yMzkgNC4wMTVjMCAxLjA3LjE0MyAyLjEwNi40MjggMy4xMDUuMzIxIDEgLjc4NSAxLjg3NCAxLjM5MiAyLjYyMy42MDcuNzUgMS4zNzQgMS4zNTYgMi4zMDIgMS44Mi45MjguNDI4IDIuMDM0LjY0MiAzLjMxOS42NDIgMS43ODQgMCAzLjIxMi0uMzc0IDQuMjgyLTEuMTI0IDEuMTA3LS43ODUgMS45MjctMS45NDUgMi40NjMtMy40OGg1Ljc4MWMtLjMyMSAxLjUtLjg3NCAyLjgzOC0xLjY1OSA0LjAxNmExMS45NDMgMTEuOTQzIDAgMDEtMi44MzggMi45OTcgMTIuMDc5IDEyLjA3OSAwIDAxLTMuNzQ3IDEuNzY3IDE0LjEzNSAxNC4xMzUgMCAwMS00LjI4Mi42NDJjLTIuMTc3IDAtNC4xMDQtLjM1Ny01Ljc4Mi0xLjA3LTEuNjc3LS43MTQtMy4xMDQtMS43MTMtNC4yODItMi45OTgtMS4xNDItMS4yODUtMi4wMTYtMi44Mi0yLjYyMy00LjYwNC0uNTcxLTEuNzg0LS44NTctMy43NDctLjg1Ny01Ljg4OCAwLTEuOTYzLjMwNC0zLjgxOS45MS01LjU2Ny42NDMtMS43ODUgMS41MzUtMy4zMzcgMi42NzctNC42NThhMTIuOTIgMTIuOTIgMCAwMTQuMjI5LTMuMjEyYzEuNjQyLS43ODUgMy40OTctMS4xNzcgNS41NjctMS4xNzcgMi4xNzcgMCA0LjEyMi40NjQgNS44MzUgMS4zOTIgMS43NDkuODkyIDMuMTk0IDIuMDg3IDQuMzM2IDMuNTg2IDEuMTQyIDEuNSAxLjk2MyAzLjIzIDIuNDYzIDUuMTkzLjUzNSAxLjkyNy42NzggMy45MjUuNDI4IDUuOTk1aC0yMC4zNDJ6TTIyMy40MyAxMi4zMjRoNi40NzdsNS40MDcgMjAuNjYzaC4xMDdsNS4xOTMtMjAuNjYzaDYuMTU2bDQuOTc4IDIwLjY2M2guMTA3bDUuNjIxLTIwLjY2M2g2LjIxTDI1NS4wMTQgNDBoLTYuMjY0bC01LjEzOS0yMC41NTZoLS4xMDdMMjM4LjQxOSA0MGgtNi40MjRsLTguNTY1LTI3LjY3NnoiIGZpbGw9IiMwMDAiLz48L3N2Zz4=" alt="Cashew">
+                </div>
+                <div class="backCont"></div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="container-card">
+                <div class="form-card">
+                    <div class="row-flex">
+                        <div class="col col-lg-6">
+                            <div class="qrBlock">
+                                <img src="https://i.gifer.com/ZZ5H.gif" alt="QR код для оплаты">
+                            </div>
+                        </div>
+                        <div class="col col-lg-6">
+                            <div class="infoCont">
+                                <div class="infoBlock">
+                                    <div class="info-row">
+                                        <div class="info-label">Получатель:</div>
+                                        <div class="recipient-text">
+                                            Оплата проезда в автобусе, гар. номер <span class="garage"></span><br>
+                                            г. Бобруйск<br>
+                                            Бобруйский ф-л Автобусный парк №2 ОАО "Могилевоблавтотранс"
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-row">
+                                        <div class="info-label">Активен с:</div>
+                                        <div class="info-value"><span class="from"></span></div>
+                                    </div>
+                                    
+                                    <div class="info-row">
+                                        <div class="info-label">Активен до:</div>
+                                        <div class="info-value"><span class="to"></span></div>
+                                    </div>
+                                    
+                                    <div class="info-row">
+                                        <div class="info-label">Описание:</div>
+                                        <div class="info-value">#<span class="hash"></span>#</div>
+                                    </div>
+                                    
+                                    <div class="info-row">
+                                        <div class="info-label">Цена:</div>
+                                        <div class="info-value price-value">1.05 BYN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Cashew<br><a href="mailto:info@cashew.me">info@cashew.me</a></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let hours1 = date.getHours();
+        let hours2 = hours1 + 1;
+        let minutes = date.getMinutes();
+
+        if (day < 10) day = '0' + day;
+        if (month < 10) month = '0' + month;
+        if (hours1 < 10) hours1 = '0' + hours1;
+        if (hours2 < 10) hours2 = '0' + hours2;
+        if (minutes < 10) minutes = '0' + minutes;
+
+        let fromDate = `${day}.${month}.${year} ${hours1}:${minutes}`;
+        let toDate = `${day}.${month}.${year} ${hours2}:${minutes}`;
+        
+        let hash = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10);
+        
+        let garageNumber = prompt('Введите гос. номер автобуса:', 'АВ 1234-5');
+        if (!garageNumber) garageNumber = '______';
+
+        document.querySelector('.from').textContent = fromDate;
+        document.querySelector('.to').textContent = toDate;
+        document.querySelector('.hash').textContent = hash;
+        document.querySelector('.garage').textContent = garageNumber;
+    })();
+</script>
+</body>
+</html>
